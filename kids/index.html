@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoon Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+        body {
+            background-image: url('http://localhost/kids/image/img (1).jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+        }
+        .calculator {
+            background: rgba(255, 223, 186, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.8);
+            text-align: center;
+            border: 5px solid #ff69b4;
+            width: max-content; /* Adjust width to fit content */
+        }
+        .display {
+            width: calc(4 * 60px + 30px); /* Adjust display width to match button section */
+            height: 60px;
+            font-size: 2em;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: #fff3cd;
+            color: #ff69b4;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 60px); /* Adjust button size */
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: #ffcccb;
+            color: #d63384;
+            font-family: 'Comic Neue', cursive;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #ff69b4;
+            color: white;
+        }
+        .equal-button {
+            grid-column: span 3; /* Expanded width to shift * button to the corner */
+            width: 100%;
+            height: 60px;
+            border-radius: 20px; /* Rounded rectangle shape */
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')">/</button> <!-- Shifted Division Button Above -->
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('00')">00</button> <!-- Added 00 Button -->
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equal-button" onclick="calculateResult()">=</button> <!-- Expanded Equals Button -->
+            <button onclick="appendToDisplay('*')">*</button> <!-- Shifted to Corner -->
+        </div>
+    </div>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (e) {
+                alert('Invalid Expression');
+            }
+        }
+    </script>
+</body>
+</html>
